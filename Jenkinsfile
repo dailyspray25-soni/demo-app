@@ -13,6 +13,15 @@ pipeline {
                 sh 'mvn test -DskipTests'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                  mkdir -p /opt/app
+                  cp target/*.jar /opt/app/
+                '''
+            }
+        }
     }
 
     post {
